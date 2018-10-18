@@ -33,4 +33,14 @@ public class ApplicationUserManagerImpl implements ApplicationUserManager {
         params.put("email", username);
         return applicationUserDao.find("from ApplicationUser au where au.email = :email", params);
     }
+
+    @Override
+    public void verifyEmail(String verificationKey) {
+        Map<String, String> params = new HashMap<>();
+        params.put("verificationKey", verificationKey);
+        List<ApplicationUser> applicationUsers = applicationUserDao.find("from ApplicationUser au where au.verificationKey = :verificationKey", params);
+        //todo: if several users
+        ApplicationUser applicationUser = applicationUsers.get(0);
+        applicationUser.set
+    }
 }

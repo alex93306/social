@@ -7,8 +7,10 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class ApplicationUser extends AbstractBean {
+    private UserStatus userStatus;
     private String email;
     private String password;
+    private String emailVerificationKey;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "profileID")
     private Profile profile;
@@ -35,5 +37,13 @@ public class ApplicationUser extends AbstractBean {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
+    }
+
+    public String getEmailVerificationKey() {
+        return emailVerificationKey;
+    }
+
+    public void setEmailVerificationKey(String emailVerificationKey) {
+        this.emailVerificationKey = emailVerificationKey;
     }
 }

@@ -5,6 +5,7 @@ import org.mycompany.beans.ApplicationUser;
 import org.mycompany.beans.Profile;
 import org.mycompany.dto.ApplicationUserDTO;
 import org.mycompany.managers.ApplicationUserManager;
+import org.mycompany.managers.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ public class ApplicationUserController {
 
     @Autowired
     ApplicationUserManager applicationUserManager;
+    @Autowired
+    EmailService emailService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/login")
     public ModelAndView login() {
@@ -41,6 +44,8 @@ public class ApplicationUserController {
         applicationUser.setProfile(profile);
 
         Long userID = applicationUserManager.save(applicationUser);
+
+        emailService.sendEmailVerification(applicationUser);
 
         return new ModelAndView("login");
     }

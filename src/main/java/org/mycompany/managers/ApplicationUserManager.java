@@ -9,4 +9,6 @@ public interface ApplicationUserManager {
     ApplicationUser find(Long id);
 
     List<ApplicationUser> findByUsername(String username);
+
+    void verifyEmail(String verificationKey);
 }
