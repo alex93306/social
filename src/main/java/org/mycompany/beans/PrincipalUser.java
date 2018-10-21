@@ -6,10 +6,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public class PrincipalUser implements UserDetails {
-    private ApplicationUser applicationUser;
+    private AppUser appUser;
 
-    public PrincipalUser(ApplicationUser applicationUser) {
-        this.applicationUser = applicationUser;
+    public PrincipalUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     @Override
@@ -19,12 +19,12 @@ public class PrincipalUser implements UserDetails {
 
     @Override
     public String getPassword() {
-        return applicationUser.getPassword();
+        return appUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return applicationUser.getEmail();
+        return appUser.getEmail();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.mycompany.managers;
 
-import org.mycompany.beans.ApplicationUser;
+import org.mycompany.beans.AppUser;
 import org.mycompany.beans.PrincipalUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,14 +14,14 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private ApplicationUserManager applicationUserManager;
+    private AppUserManager appUserManager;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        List<ApplicationUser> applicationUser = applicationUserManager.findByUsername(username);
-        if (applicationUser.isEmpty()) {
+        AppUser appUser = appUserManager.findByUsername(username);
+        if (appUser == null) {
             throw new UsernameNotFoundException("User not found. username = " + username);
         }
-        return new PrincipalUser(applicationUser.get(0));
+        return new PrincipalUser(appUser);
     }
 }

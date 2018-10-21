@@ -9,6 +9,8 @@
     <http>
         <intercept-url pattern="/signup" access="permitAll()"/>
         <intercept-url pattern="/login" access="permitAll()"/>
+        <intercept-url pattern="/user/activate/**" access="permitAll()"/>
+        <intercept-url pattern="/password/restore" access="permitAll()"/>
         <intercept-url pattern="/**" access="isAuthenticated()" />
         <form-login login-page="/login"/>
         <logout logout-url="/logout" logout-success-url="/login" />

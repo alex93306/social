@@ -6,14 +6,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 @Entity
-public class ApplicationUser extends AbstractBean {
-    private UserStatus userStatus;
+public class AppUser extends AbstractBean {
     private String email;
     private String password;
-    private String emailVerificationKey;
+    private String uuid;
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "profileID")
     private Profile profile;
+    private boolean enable;
 
     public String getEmail() {
         return email;
@@ -39,11 +39,19 @@ public class ApplicationUser extends AbstractBean {
         this.profile = profile;
     }
 
-    public String getEmailVerificationKey() {
-        return emailVerificationKey;
+    public String getUuid() {
+        return uuid;
     }
 
-    public void setEmailVerificationKey(String emailVerificationKey) {
-        this.emailVerificationKey = emailVerificationKey;
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }

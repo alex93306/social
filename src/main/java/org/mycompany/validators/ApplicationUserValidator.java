@@ -1,6 +1,6 @@
 package org.mycompany.validators;
 
-import org.mycompany.beans.ApplicationUser;
+import org.mycompany.beans.AppUser;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 public class ApplicationUserValidator implements Validator {
     @Override
     public boolean supports(Class<?> aClass) {
-        return ApplicationUser.class.equals(aClass);
+        return AppUser.class.equals(aClass);
     }
 
     @Override

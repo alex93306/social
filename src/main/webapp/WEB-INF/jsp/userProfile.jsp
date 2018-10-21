@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Hello, ${fullName}</h1>
+    <p>${profile.firstName} ${profile.lastName}</p>
+    <p>${profile.birthDate}</p>
+    <p>${profile.gender}</p>
+    <p>${profile.aboutMe}</p>
 </body>
 </html>
