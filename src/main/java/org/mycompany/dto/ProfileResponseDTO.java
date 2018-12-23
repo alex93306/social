@@ -1,29 +1,48 @@
-package org.mycompany.beans;
+package org.mycompany.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Transient;
-import java.time.LocalDate;
+import org.mycompany.beans.Gender;
+
+import org.mycompany.beans.RelationshipStatus;
+
 import java.time.LocalDateTime;
 
-@Entity
-public class Profile extends AbstractBean {
+public class ProfileResponseDTO {
 
-    @Transient
-    private AppUser appUser;
-
-    private String avatarUrl;
+//    private AppUserCreateDTO applicationUserDTO;
+    private Long profileID;
+    private String avatarURL;
     private String firstName;
     private String lastName;
     private LocalDateTime birthDate;
     private Gender gender;
     private RelationshipStatus relationshipStatus;
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public ProfileResponseDTO() {
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+//    public AppUserCreateDTO getApplicationUserDTO() {
+//        return applicationUserDTO;
+//    }
+//
+//    public void setApplicationUserDTO(AppUserCreateDTO applicationUserDTO) {
+//        this.applicationUserDTO = applicationUserDTO;
+//    }
+
+
+    public Long getProfileID() {
+        return profileID;
+    }
+
+    public void setProfileID(Long profileID) {
+        this.profileID = profileID;
+    }
+
+    public String getAvatarURL() {
+        return avatarURL;
+    }
+
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
     }
 
     public String getFirstName() {
@@ -64,13 +83,5 @@ public class Profile extends AbstractBean {
 
     public void setRelationshipStatus(RelationshipStatus relationshipStatus) {
         this.relationshipStatus = relationshipStatus;
-    }
-
-    public AppUser getAppUser() {
-        return appUser;
-    }
-
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
     }
 }

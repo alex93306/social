@@ -1,29 +1,25 @@
-package org.mycompany.beans;
+package org.mycompany.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.Transient;
-import java.time.LocalDate;
+import org.mycompany.beans.Gender;
+import org.mycompany.beans.RelationshipStatus;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.time.LocalDateTime;
 
-@Entity
-public class Profile extends AbstractBean {
-
-    @Transient
-    private AppUser appUser;
-
-    private String avatarUrl;
+public class ProfileUpdateDTO {
+    private String avatarURL;
     private String firstName;
     private String lastName;
     private LocalDateTime birthDate;
     private Gender gender;
     private RelationshipStatus relationshipStatus;
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public String getAvatarURL() {
+        return avatarURL;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
     }
 
     public String getFirstName() {
@@ -64,13 +60,5 @@ public class Profile extends AbstractBean {
 
     public void setRelationshipStatus(RelationshipStatus relationshipStatus) {
         this.relationshipStatus = relationshipStatus;
-    }
-
-    public AppUser getAppUser() {
-        return appUser;
-    }
-
-    public void setAppUser(AppUser appUser) {
-        this.appUser = appUser;
     }
 }
