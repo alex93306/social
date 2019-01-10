@@ -1,9 +1,12 @@
 package org.mycompany.controllers;
 
+import org.mycompany.beans.Chat;
 import org.mycompany.dto.CreateChatDTO;
 import org.mycompany.dto.ChatResponseDTO;
+import org.mycompany.managers.ChatManager;
 import org.mycompany.validators.CreateChatDTOValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,6 +26,8 @@ public class ChatRestController {
 
     @Autowired
     private CreateChatDTOValidator createChatDTOValidator;
+    @Autowired
+    private ChatManager chatManager;
 
     @InitBinder("createChatDTO")
     public void initBinder(WebDataBinder binder) {
@@ -60,11 +65,12 @@ public class ChatRestController {
     public Object createChat(@Validated @RequestBody CreateChatDTO createChatDTO, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(bindingResult.getAllErrors().
-                    stream().map(i -> i.getDefaultMessage()).collect(Collectors.toList()), HttpStatus.BAD_REQUEST);
+                    stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList()), HttpStatus.BAD_REQUEST);
         }
         //todo: validate permission
 
         //todo: transform
-        return 34L;
+        Chat chat = null;
+        return chatManager.save(chat);
     }
 }

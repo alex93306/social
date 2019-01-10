@@ -47,7 +47,7 @@ public class ChatManagerImplTest {
         when(chatDAO.save(eq(chatToSave))).thenReturn(expectedChatID);
 
         // Method call
-        Long actualChatID = chatManager.save(ObjectUtils.clone(chatToSave));
+        Long actualChatID = chatManager.save(chatToSave);
 
         // Assert
         assertEquals(expectedChatID, actualChatID);

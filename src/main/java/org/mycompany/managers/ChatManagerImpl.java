@@ -3,7 +3,9 @@ package org.mycompany.managers;
 import org.mycompany.beans.Chat;
 import org.mycompany.dao.ChatDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ChatManagerImpl implements ChatManager {
     @Autowired
     private ChatDAO chatDAO;
@@ -14,7 +16,6 @@ public class ChatManagerImpl implements ChatManager {
     }
 
     public Long save(Chat chat) {
-        chat.setTitle("kdsf");
         return chatDAO.save(chat);
     }
 }
