@@ -1,12 +1,16 @@
 package org.mycompany.dto;
 
-public class AppUserResponseDTO {
+import org.mycompany.transformers.AbstractResponseDTO;
+
+public class AppUserResponseDTO extends AbstractResponseDTO {
     private Long id;
     private String email;
 
     // profile
     private String firstName;
     private String lastName;
+    private String gender;
+    private String bDate;
 
     public Long getId() {
         return id;
@@ -38,5 +42,21 @@ public class AppUserResponseDTO {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getbDate() {
+        return bDate;
+    }
+
+    public void setbDate(String bDate) {
+        this.bDate = bDate;
     }
 }

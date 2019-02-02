@@ -8,7 +8,7 @@
 //
 //public class ProfileResponseDTO {
 //
-////    private AppUserCreateDTO applicationUserDTO;
+////    private AppUserDTO applicationUserDTO;
 //    private Long profileID;
 //    private String avatarURL;
 //    private String firstName;
@@ -20,11 +20,11 @@
 //    public ProfileResponseDTO() {
 //    }
 //
-////    public AppUserCreateDTO getApplicationUserDTO() {
+////    public AppUserDTO getApplicationUserDTO() {
 ////        return applicationUserDTO;
 ////    }
 ////
-////    public void setApplicationUserDTO(AppUserCreateDTO applicationUserDTO) {
+////    public void setApplicationUserDTO(AppUserDTO applicationUserDTO) {
 ////        this.applicationUserDTO = applicationUserDTO;
 ////    }
 //

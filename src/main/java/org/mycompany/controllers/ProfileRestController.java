@@ -3,7 +3,7 @@
 //import org.mycompany.beans.Gender;
 //import org.mycompany.beans.Profile;
 //import org.mycompany.beans.RelationshipStatus;
-//import org.mycompany.dto.AppUserCreateDTO;
+//import org.mycompany.dto.AppUserDTO;
 //import org.mycompany.dto.ProfileResponseDTO;
 //import org.mycompany.dto.ProfileUpdateDTO;
 //import org.mycompany.managers.ProfileManager;
@@ -57,7 +57,7 @@
 //
 //    @PostMapping
 //    @ResponseBody
-//    public Long createUser(@Validated @RequestBody AppUserCreateDTO appUserCreateDTO, BindingResult bindingResult) {
+//    public Long createUser(@Validated @RequestBody AppUserDTO appUserCreateDTO, BindingResult bindingResult) {
 //        if (bindingResult.hasErrors()){
 //
 //        }

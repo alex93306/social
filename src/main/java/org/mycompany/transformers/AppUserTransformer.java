@@ -1,40 +1,39 @@
-//package org.mycompany.transformers;
-//
-//import org.mycompany.beans.Profile;
-//import org.mycompany.dto.ProfileResponseDTO;
-//import org.mycompany.dto.ProfileUpdateDTO;
-//import org.springframework.beans.BeanUtils;
-//import org.springframework.stereotype.Component;
-//
-////import org.mycompany.dto.ProfileRequestDTO;
-//
-//@Component
-//public class AppUserTransformer {
-////    public void populateEntity(ProfileRequestDTO dto, Profile profile) {
-////        profile.setFirstName(dto.getFirstName());
-////        profile.setLastName(dto.getLastName());
-////        profile.setBirthDate(dto.getBirthDate());
-////        profile.setGender(dto.getGender());
-////        profile.setRelationshipStatus(dto.getRelationshipStatus());
-////
-////    }
-//
-////    public ProfileResponseDTO populateDTO(Profile profile) {
-////
-////        ProfileResponseDTO profileResponseDTO = new ProfileResponseDTO();
-////        profileResponseDTO.setProfileID(profile.getId());
-////        profileResponseDTO.setBirthDate(profile.getBirthDate());
-////        profileResponseDTO.setGender(profile.getGender());
-////        profileResponseDTO.setRelationshipStatus(profile.getRelationshipStatus());
-////        profileResponseDTO.setFirstName(profile.getFirstName());
-////        profileResponseDTO.setLastName(profile.getLastName());
-////
-////        return profileResponseDTO;
-////    }
-////
-////    public Profile populateEntity(ProfileUpdateDTO profileUpdateDTO) {
-////        Profile profile = new Profile();
-////        BeanUtils.copyProperties(profileUpdateDTO, profile);
-////        return profile;
-////    }
-//}
+package org.mycompany.transformers;
+
+
+import org.mycompany.beans.AppUser;
+import org.mycompany.beans.Gender;
+import org.mycompany.dto.AppUserDTO;
+import org.mycompany.dto.AppUserResponseDTO;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+
+@Component
+public class AppUserTransformer implements DTOTransformer<AppUser, AppUserDTO, AppUserResponseDTO> {
+    @Override
+    public AppUserResponseDTO populateDTO(AppUser appUser) {
+        AppUserResponseDTO appUserResponseDTO = new AppUserResponseDTO();
+        appUserResponseDTO.setFirstName(appUser.getFirstName());
+        appUserResponseDTO.setLastName(appUser.getLastName());
+        appUserResponseDTO.setEmail(appUser.getEmail());
+        appUserResponseDTO.setGender(String.valueOf(appUser.getGender()));
+        appUserResponseDTO.setBirthDate(appUser.getBirthDate().toString()); //todo: check format
+//        appUserResponseDTO.setPassword(); //todo: I'm not sure
+
+        return appUserResponseDTO;
+    }
+
+    @Override
+    public AppUser populateEntity(AppUserDTO dto) {
+        AppUser appUser = new AppUser();
+        appUser.setFirstName(dto.getFirstName());
+        appUser.setLastName(dto.getLastName());
+        appUser.setEmail(dto.getEmail());
+        appUser.setPassword(dto.getPassword());
+        appUser.setGender(Gender.valueOf(dto.getGender()));
+        appUser.setBirthDate(LocalDate.parse(dto.getBirthDate()));
+
+        return appUser;
+    }
+}

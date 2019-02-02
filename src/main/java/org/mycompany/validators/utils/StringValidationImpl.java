@@ -10,15 +10,15 @@ import org.springframework.validation.Errors;
 public class StringValidationImpl implements StringValidation {
 
     @Override
-    public void rejectInvalidEmail(String email, Errors errors) {
-        if (!CustomStringUtils.isValidEmail(email))
-            errors.rejectValue("email", "invalid.email");
+    public void rejectInvalidEmail(String email, String fieldName, Errors errors) {
+        if (!CStringUtils.isValidEmail(email))
+            errors.rejectValue("email", "invalid.email", fieldName);
     }
 
      
     public void rejectBlank(String value, String fieldName, Errors errors) {
         if (StringUtils.isBlank(value)) {
-            errors.rejectValue(fieldName, "global.blank", fieldName);
+            errors.rejectValue(fieldName, "global.blank", new Object[]{fieldName}, null);
         }
     }
 

@@ -27,6 +27,70 @@ public class StringValidationImplTest {
 //    }
 
     @Test
+    public void testRejectInvalidEmail()
+    {
+        Errors errors = new DirectFieldBindingResult(new AppUser(), "objName"); //todo: investigate param
+
+        // Method call
+        stringValidation.rejectInvalidEmail("testValidEmail@gmail.com", "firstName", errors);
+
+        assertFalse(errors.hasFieldErrors("firstName"));
+    }
+
+    @Test
+    public void testRejectInvalidEmail2()
+    {
+        Errors errors = new DirectFieldBindingResult(new AppUser(), "objName"); //todo: investigate param
+
+        // Method call
+        stringValidation.rejectInvalidEmail("testValidEmail@gmail.com", "firstName", errors);
+
+        stringValidation.rejectInvalidEmail("joe1blow@apache.org", "firstName", errors);
+
+        stringValidation.rejectInvalidEmail("joe$blow@apache.org", "firstName", errors);
+
+        stringValidation.rejectInvalidEmail("joe-@apache.org", "firstName", errors);
+
+        stringValidation.rejectInvalidEmail("joe_@apache.org", "firstName", errors);
+
+        assertFalse(errors.hasFieldErrors("firstName"));
+    }
+
+    @Test
+    public void testRejectBlank_notBlank() {
+        Errors errors = new DirectFieldBindingResult(new AppUser(), "objName"); //todo: investigate param
+
+        // Method call
+        stringValidation.rejectBlank("testStringValue", "firstName", errors);
+
+        // Assert
+        assertFalse(errors.hasFieldErrors("firstName"));
+    }
+
+
+    @Test
+    public void testRejectBlank_null() {
+        Errors errors = new DirectFieldBindingResult(new AppUser(), "objName"); //todo: investigate param
+
+        // Method call
+        stringValidation.rejectBlank(null, "firstName", errors);
+
+        // Assert
+        assertEquals("global.blank", errors.getFieldError("firstName").getCode());
+    }
+
+    @Test
+    public void testRejectBlank_emptyString() {
+        Errors errors = new DirectFieldBindingResult(new AppUser(), "objName"); //todo: investigate param
+
+        // Method call
+        stringValidation.rejectBlank("", "firstName", errors);
+
+        // Assert
+        assertEquals("global.blank", errors.getFieldError("firstName").getCode());
+    }
+
+    @Test
     public void testRejectMinLength_lessThanMinLength() {
         String value = "al"; //todo: random string
         Errors errors = new DirectFieldBindingResult(new AppUser(), "objName"); //todo: investigate param
